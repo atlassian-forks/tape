@@ -1,6 +1,7 @@
 package com.squareup.tape;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
@@ -9,6 +10,14 @@ import java.io.RandomAccessFile;
  */
 public class AsyncQueueFile extends QueueFile {
     public AsyncQueueFile(final File file) throws IOException {
-        super(file, new RandomAccessFile(file, "rw"));
+        super(file);
+    }
+
+    /**
+     * Opens a random access file that writes asynchronously.
+     */
+    @Override
+    protected RandomAccessFile open(File file) throws FileNotFoundException {
+        return new RandomAccessFile(file, "rw");
     }
 }

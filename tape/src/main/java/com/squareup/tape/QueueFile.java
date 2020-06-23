@@ -112,11 +112,15 @@ public class QueueFile {
    * instance should access a given file at a time.
    */
   public QueueFile(File file) throws IOException {
-    this(file, open(file));
+    if (!file.exists()) initialize(file);
+    raf = open(file);
+    readHeader();
   }
 
-  QueueFile(File file, RandomAccessFile raf) throws IOException {
-    if (!file.exists()) initialize(file);
+  /**
+   * For testing.
+   */
+  QueueFile(RandomAccessFile raf) throws IOException {
     this.raf = raf;
     readHeader();
   }
@@ -191,7 +195,7 @@ public class QueueFile {
   }
 
   /** Atomically initializes a new file. */
-  private static void initialize(File file) throws IOException {
+  private void initialize(File file) throws IOException {
     // Use a temp file so we don't leave a partially-initialized file.
     File tempFile = new File(file.getPath() + ".tmp");
     RandomAccessFile raf = open(tempFile);
@@ -210,7 +214,7 @@ public class QueueFile {
   }
 
   /** Opens a random access file that writes synchronously. */
-  private static RandomAccessFile open(File file) throws FileNotFoundException {
+  protected RandomAccessFile open(File file) throws FileNotFoundException {
     return new RandomAccessFile(file, "rwd");
   }
 
