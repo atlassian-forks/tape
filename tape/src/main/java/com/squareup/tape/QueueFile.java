@@ -117,9 +117,7 @@ public class QueueFile {
     readHeader();
   }
 
-  /**
-   * For testing.
-   */
+  /** For testing. */
   QueueFile(RandomAccessFile raf) throws IOException {
     this.raf = raf;
     readHeader();
