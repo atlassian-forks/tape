@@ -30,11 +30,11 @@
 
   <name>Tape (Parent)</name>
   <description>A lightning fast, transactional, file-based FIFO for Android and Java.</description>
-  <url>http://github.com/square/tape/</url>
+  <url>http://github.com/atlassian-forks/tape/</url>
 
   <modules>
     <module>tape</module>
-    <module>tape-sample</module>
+<!--    <module>tape-sample</module>-->
   </modules>
 
   <properties>
@@ -53,10 +53,9 @@
   </properties>
 
   <scm>
-    <url>http://github.com/square/tape</url>
-    <connection>scm:git:git://github.com/square/tape.git</connection>
-    <developerConnection>scm:git:git@github.com:square/tape.git</developerConnection>
-    <tag>tape-parent-1.2.3</tag>
+    <url>http://github.com/atlassian-forks/tape</url>
+    <connection>scm:git:git://github.com/atlassian-forks/tape.git</connection>
+    <developerConnection>scm:git:git@github.com:atlassian-forks/tape.git</developerConnection>
   </scm>
 
   <organization>
@@ -76,6 +75,13 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
+
+  <distributionManagement>
+    <repository>
+      <id>atlassian-3rdparty</id>
+      <url>https://packages.atlassian.com/maven/3rdparty</url>
+    </repository>
+  </distributionManagement>
 
   <dependencyManagement>
     <dependencies>
