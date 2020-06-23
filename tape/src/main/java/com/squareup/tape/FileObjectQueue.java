@@ -30,9 +30,13 @@ public class FileObjectQueue<T> implements ObjectQueue<T> {
   private Listener<T> listener;
 
   public FileObjectQueue(File file, Converter<T> converter) throws IOException {
+    this(file, converter, true);
+  }
+
+  public FileObjectQueue(File file, Converter<T> converter, boolean writeSynchronously) throws IOException {
     this.file = file;
     this.converter = converter;
-    this.queueFile = new QueueFile(file);
+    this.queueFile = writeSynchronously ? new QueueFile(file) : new AsyncQueueFile(file);
   }
 
   @Override public int size() {

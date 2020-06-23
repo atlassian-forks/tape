@@ -112,13 +112,11 @@ public class QueueFile {
    * instance should access a given file at a time.
    */
   public QueueFile(File file) throws IOException {
-    if (!file.exists()) initialize(file);
-    raf = open(file);
-    readHeader();
+    this(file, open(file));
   }
 
-  /** For testing. */
-  QueueFile(RandomAccessFile raf) throws IOException {
+  QueueFile(File file, RandomAccessFile raf) throws IOException {
+    if (!file.exists()) initialize(file);
     this.raf = raf;
     readHeader();
   }
