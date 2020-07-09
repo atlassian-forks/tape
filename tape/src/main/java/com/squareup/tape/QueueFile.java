@@ -325,7 +325,7 @@ public class QueueFile {
   }
 
   /** Returns the number of used bytes. */
-  private int usedBytes() {
+  synchronized int usedBytes() {
     if (elementCount == 0) return HEADER_LENGTH;
 
     if (last.position >= first.position) {
@@ -342,7 +342,7 @@ public class QueueFile {
   }
 
   /** Returns number of unused bytes. */
-  private int remainingBytes() {
+  synchronized int remainingBytes() {
     return fileLength - usedBytes();
   }
 

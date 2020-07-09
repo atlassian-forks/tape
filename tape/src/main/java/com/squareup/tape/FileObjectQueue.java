@@ -43,6 +43,14 @@ public class FileObjectQueue<T> implements ObjectQueue<T> {
     return queueFile.size();
   }
 
+  public int usedBytes() {
+    return queueFile.usedBytes();
+  }
+
+  public int remainingBytes() {
+    return queueFile.remainingBytes();
+  }
+
   @Override public final void add(T entry) {
     try {
       bytes.reset();
